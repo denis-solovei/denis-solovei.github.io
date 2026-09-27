@@ -1,146 +1,362 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Denis Solovei — AI Content Creator</title>
-<meta name="description" content="Photoreal AI-generated commercial content for e-commerce and jewelry brands.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Denys Solovei — Business Assistant</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2EEE3;
+    --panel:#EAE4D3;
+    --ink:#1E3A34;
+    --ink-soft:#4B5F59;
+    --gold:#B9862E;
+    --line:#D8D0BC;
+    --dark:#16302B;
+    --dark-2:#1E3E37;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-padding-top:70px;scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter',sans-serif;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.brand{font-family:'Montserrat',sans-serif}
+  a{color:inherit}
+  img{max-width:100%}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .grid{display:grid;gap:48px}
+
+  /* header */
+  header{
+    position:sticky;top:0;z-index:20;
+    background:rgba(242,238,227,.9);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top,0px);
+  }
+  .navbar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1080px;margin:0 auto}
+  .brand{font-weight:700;font-size:18px;letter-spacing:.2px}
+  nav.links{display:flex;gap:22px;font-size:14px}
+  nav.links a{text-decoration:none;color:var(--ink-soft)}
+  nav.links a:hover{color:var(--ink)}
+  .langs{display:flex;gap:6px;font-size:13px}
+  .langs button{
+    background:none;border:1px solid var(--line);color:var(--ink-soft);
+    padding:5px 9px;border-radius:6px;cursor:pointer;font-family:inherit;
+  }
+  .langs button.active{background:var(--dark);color:var(--bg);border-color:var(--dark)}
+  @media(max-width:720px){nav.links{display:none}}
+
+  /* hero */
+  .hero{padding:72px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .8fr;gap:56px;align-items:center}
+  @media(max-width:800px){.hero-grid{grid-template-columns:1fr;gap:32px}}
+  .hero h1{font-size:clamp(32px,5vw,46px);margin:0 0 6px;font-weight:700}
+  .hero .role{font-weight:600;color:var(--ink-soft);margin-bottom:18px}
+  .hero .rule{width:44px;height:2px;background:var(--gold);margin-bottom:20px}
+  .hero p.offer{font-size:19px;max-width:46ch;margin:0 0 28px}
+  .cta{
+    display:inline-block;background:var(--dark);color:#fff;text-decoration:none;
+    padding:13px 26px;border-radius:8px;font-weight:600;font-size:15px;
+  }
+  .cta:hover{background:var(--dark-2)}
+  .avatar{
+    aspect-ratio:4/5;border-radius:16px;background:var(--dark);
+    display:flex;align-items:center;justify-content:center;color:var(--bg);
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:64px;
+  }
+
+  /* section shell */
+  section{padding:56px 0}
+  .kicker{font-size:13px;color:var(--gold);font-weight:600;margin-bottom:8px}
+  h2{font-size:clamp(22px,3vw,28px);margin:0 0 34px;max-width:34ch}
+
+  /* qualities */
+  .qualities{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:760px){.qualities{grid-template-columns:1fr}}
+  .q-card{background:var(--panel);border-radius:12px;padding:24px;border:1px solid var(--line)}
+  .q-card h3{font-size:17px;margin:0 0 8px}
+  .q-card p{margin:0;color:var(--ink-soft);font-size:14.5px}
+  .joke{
+    margin-top:24px;border-left:3px solid var(--gold);padding:14px 20px;
+    background:var(--panel);border-radius:0 10px 10px 0;font-size:15px;color:var(--ink-soft);
+  }
+  .joke b{color:var(--ink)}
+
+  /* numbers */
+  .numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:760px){.numbers{grid-template-columns:1fr}}
+  .num-card{padding:0;border-top:2px solid var(--dark)}
+  .num-card .n{font-family:'Montserrat',sans-serif;font-weight:800;font-size:34px;margin:14px 0 4px}
+  .num-card .l{font-weight:600;font-size:15px;margin-bottom:6px}
+  .num-card .d{color:var(--ink-soft);font-size:14px}
+
+  /* functions */
+  .functions{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:820px){.functions{grid-template-columns:repeat(2,1fr)}}
+  .f-card{padding:20px 0;border-top:1px solid var(--line)}
+  .f-card h3{font-size:16px;margin:0 0 6px}
+  .f-card p{margin:0;color:var(--ink-soft);font-size:13.5px}
+
+  /* interests */
+  .interests{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  @media(max-width:760px){.interests{grid-template-columns:1fr}}
+  .i-card h3{font-size:15px;margin:0 0 8px;letter-spacing:.2px}
+  .i-card p{margin:0;color:var(--ink-soft);font-size:14.5px}
+
+  /* footer */
+  footer{background:var(--dark);color:#EDE7D8;padding:64px 0 40px;margin-top:24px}
+  footer h2{color:#fff;max-width:20ch}
+  footer .sub{color:#B9C4BF;max-width:44ch;margin-bottom:36px}
+  .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;font-size:14px}
+  @media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
+  .contact-grid .label{color:#9AAAA4;font-size:12.5px;margin-bottom:4px}
+  .contact-grid a{color:#EDE7D8;text-decoration:none;border-bottom:1px solid #4B655F}
+  .foot-bottom{margin-top:48px;padding-top:20px;border-top:1px solid #2C4A43;font-size:12.5px;color:#8FA099;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+</style>
 </head>
 <body>
 
-<div class="glow" aria-hidden="true"></div>
-
-<header class="site-header">
-  <a class="brand" href="#top">Denis&nbsp;Solovei</a>
-  <nav class="lang-switch" aria-label="Language switcher">
-    <button type="button" class="lang-btn is-active" data-lang="en">EN</button>
-    <span class="lang-sep" aria-hidden="true">/</span>
-    <button type="button" class="lang-btn" data-lang="ru">RU</button>
-    <span class="lang-sep" aria-hidden="true">/</span>
-    <button type="button" class="lang-btn" data-lang="uk">UA</button>
-  </nav>
+<header>
+  <div class="navbar">
+    <div class="brand">Denys Solovei</div>
+    <nav class="links">
+      <a href="#qualities" data-t="nav.qualities">Якості</a>
+      <a href="#experience" data-t="nav.experience">Досвід</a>
+      <a href="#functions" data-t="nav.functions">Функціонал</a>
+      <a href="#interests" data-t="nav.interests">Інтереси</a>
+      <a href="#contact" data-t="nav.contact">Контакти</a>
+    </nav>
+    <div class="langs" id="langSwitch">
+      <button data-lang="uk">UK</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="es">ES</button>
+    </div>
+  </div>
 </header>
 
-<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 data-t="hero.name">Денис Соловей</h1>
+      <div class="role" data-t="hero.role">Бізнес-асистент</div>
+      <div class="rule"></div>
+      <p class="offer" data-t="hero.offer">Забираю операційні задачі — повертаю вам фокус.</p>
+      <a class="cta" href="#contact" data-t="hero.cta">Зв'язатися</a>
+    </div>
+    <div class="avatar">ДС</div>
+  </div>
+</section>
 
-  <section class="hero">
-    <p class="eyebrow" data-i18n="hero.eyebrow">AI Content Creator</p>
-    <h1 class="hero-title" data-i18n="hero.title">Photoreal product content,<br>engineered by AI.</h1>
-    <p class="hero-sub" data-i18n="hero.sub">A single phone photo, rebuilt into studio-grade commercial visuals — with exact geometry and zero artifacts.</p>
-    <a href="#portfolio" class="cta" data-i18n="hero.cta">See the work</a>
-  </section>
-
-  <section class="portfolio" id="portfolio">
-
-    <article class="case" id="case-1">
-      <div class="case-text">
-        <p class="case-index">e-commerce · flatlay</p>
-        <h2 data-i18n="case1.title">From phone to studio flatlay</h2>
-        <p class="case-desc" data-i18n="case1.desc">A raw product photo, rebuilt into a clean studio flatlay — same geometry, same materials, gallery-grade light.</p>
+<section id="qualities">
+  <div class="wrap">
+    <div class="kicker" data-t="qualities.kicker">СУПЕРСИЛИ</div>
+    <h2 data-t="qualities.title">Системність без зайвої метушні</h2>
+    <div class="qualities">
+      <div class="q-card">
+        <h3 data-t="qualities.q1.t">Системність</h3>
+        <p data-t="qualities.q1.d">Структурую інформацію, завдання та процеси.</p>
       </div>
-      <div class="compare compare-contain" data-compare>
-        <div class="compare-frame">
-          <div class="compare-img compare-before">
-            <img src="img/perfume_01.jpg" alt="Perfume bottle — raw phone photo">
-          </div>
-          <div class="compare-img compare-after" style="clip-path: inset(0 50% 0 0);">
-            <img src="img/perfume_02.jpg" alt="Perfume bottle — AI studio flatlay">
-          </div>
-          <div class="compare-handle" style="left:50%;" tabindex="0" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-            <span class="handle-grip"></span>
-          </div>
-          <button type="button" class="compare-expand" data-compare-expand
-            data-before="img/perfume_01.jpg" data-before-alt="Perfume bottle — raw phone photo"
-            data-after="img/perfume_02.jpg" data-after-alt="Perfume bottle — AI studio flatlay"
-            aria-label="Open larger comparison">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/></svg>
-          </button>
-        </div>
+      <div class="q-card">
+        <h3 data-t="qualities.q2.t">Самостійність</h3>
+        <p data-t="qualities.q2.d">Рухаю завдання вперед без постійного контролю.</p>
       </div>
-    </article>
-
-    <article class="case" id="case-2">
-      <div class="case-text">
-        <p class="case-index">lifestyle · consistency</p>
-        <h2 data-i18n="case2.title">One face, one product, any location</h2>
-        <p class="case-desc" data-i18n="case2.desc">A single product shot becomes three lifestyle scenes — same model, same face, same product, zero drift.</p>
+      <div class="q-card">
+        <h3 data-t="qualities.q3.t">Допитливість</h3>
+        <p data-t="qualities.q3.d">Занурююся в інформацію глибше, ніж вимагає запит.</p>
       </div>
-      <div class="grid4">
-        <button type="button" class="grid-tile" data-lightbox>
-          <img src="img/sunglasses.jpg" alt="Sunglasses — source product shot">
-        </button>
-        <button type="button" class="grid-tile" data-lightbox>
-          <img src="img/beach.jpg" alt="Model wearing sunglasses — beach scene">
-        </button>
-        <button type="button" class="grid-tile" data-lightbox>
-          <img src="img/restaurant.jpg" alt="Model wearing sunglasses — restaurant scene">
-        </button>
-        <button type="button" class="grid-tile" data-lightbox>
-          <img src="img/city.jpg" alt="Model wearing sunglasses — city scene">
-        </button>
+    </div>
+    <div class="joke" data-t="qualities.joke"><b>Ще одна з моїх навичок:</b> з часом починаю розуміти, чого хоче керівник, ще до того, як він сам про це подумав. Шкода, що в резюме не можна написати: «Телепатія — C1».</div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="kicker" data-t="experience.kicker">СИСТЕМНІСТЬ НА ПРАКТИЦІ</div>
+    <h2 data-t="experience.title">Досвід у цифрах</h2>
+    <div class="numbers">
+      <div class="num-card">
+        <div class="n">5–6</div>
+        <div class="l" data-t="experience.n1.l">людей у команді</div>
+        <div class="d" data-t="experience.n1.d">Координував роботу команди та кількох виробничих напрямів.</div>
       </div>
-    </article>
-
-    <article class="case" id="case-3">
-      <div class="case-text">
-        <p class="case-index">retail · redesign</p>
-        <h2 data-i18n="case3.title">From cluttered shelf to boutique</h2>
-        <p class="case-desc" data-i18n="case3.desc">A chaotic storefront, redesigned into a premium boutique — every original item kept, nothing invented.</p>
+      <div class="num-card">
+        <div class="n">1 000+</div>
+        <div class="l" data-t="experience.n2.l">B2B-компаній</div>
+        <div class="d" data-t="experience.n2.d">Зібрав і систематизував базу компаній у Google Sheets.</div>
       </div>
-      <div class="compare" data-compare>
-        <div class="compare-frame">
-          <div class="compare-img compare-before">
-            <img src="img/handbags_before.jpg" alt="Cluttered handbag display — raw shelf photo">
-          </div>
-          <div class="compare-img compare-after" style="clip-path: inset(0 50% 0 0);">
-            <img src="img/handbags.jpg" alt="Handbag display — AI-redesigned boutique">
-          </div>
-          <div class="compare-handle" style="left:50%;" tabindex="0" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-            <span class="handle-grip"></span>
-          </div>
-          <button type="button" class="compare-expand" data-compare-expand
-            data-before="img/handbags_before.jpg" data-before-alt="Cluttered handbag display — raw shelf photo"
-            data-after="img/handbags.jpg" data-after-alt="Handbag display — AI-redesigned boutique"
-            aria-label="Open larger comparison">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/></svg>
-          </button>
-        </div>
+      <div class="num-card">
+        <div class="n" style="font-size:26px" data-t="experience.n3.n">SOP + чек-листи</div>
+        <div class="l" data-t="experience.n3.l">Стандартизація роботи</div>
+        <div class="d" data-t="experience.n3.d">Впроваджував SOP і чек-листи для впорядкування робочих процесів.</div>
       </div>
-    </article>
+    </div>
+  </div>
+</section>
 
-  </section>
+<section id="functions">
+  <div class="wrap">
+    <div class="kicker" data-t="functions.kicker">ЩО МОЖУ ВЗЯТИ НА СЕБЕ</div>
+    <h2 data-t="functions.title">Забираю операційні задачі — повертаю вам фокус</h2>
+    <div class="functions">
+      <div class="f-card">
+        <h3 data-t="functions.f1.t">Організація</h3>
+        <p data-t="functions.f1.d">Календар · зустрічі · поїздки</p>
+      </div>
+      <div class="f-card">
+        <h3 data-t="functions.f2.t">Контроль</h3>
+        <p data-t="functions.f2.d">Завдання · дедлайни · підрядники</p>
+      </div>
+      <div class="f-card">
+        <h3 data-t="functions.f3.t">Інформація</h3>
+        <p data-t="functions.f3.d">Пошук · документи · таблиці</p>
+      </div>
+      <div class="f-card">
+        <h3 data-t="functions.f4.t">Оптимізація</h3>
+        <p data-t="functions.f4.d">Процеси · автоматизація · AI-інструменти</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section class="contacts" id="contacts">
-    <h2 data-i18n="contacts.title">Let's talk</h2>
-    <p class="contacts-sub" data-i18n="contacts.sub">Open for collaborations.</p>
-    <ul class="contact-list">
-      <li><a href="https://telegram.me/denys_solovei" target="_blank" rel="noopener">Telegram</a></li>
-      <li><a href="mailto:denis.solovey@outlook.com">Email</a></li>
-      <li><a href="https://wa.me/380973903810" target="_blank" rel="noopener">WhatsApp</a></li>
-    </ul>
-  </section>
+<section id="interests">
+  <div class="wrap">
+    <div class="kicker" data-t="interests.kicker">ДИВЛЮСЯ ШИРШЕ</div>
+    <h2 data-t="interests.title">Контекст і кругозір</h2>
+    <div class="interests">
+      <div class="i-card">
+        <h3 data-t="interests.i1.t">Історія + Географія</h3>
+        <p data-t="interests.i1.d">Допомагають бачити контекст і причинно-наслідкові зв'язки.</p>
+      </div>
+      <div class="i-card">
+        <h3 data-t="interests.i2.t">Мови + AI і технології</h3>
+        <p data-t="interests.i2.d">Відкривають доступ до інформації, інших поглядів і нових інструментів.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-</main>
-
-<footer class="site-footer">
-  <p data-i18n="footer.text">© 2026 Denis Solovei — AI Content Creator</p>
+<footer id="contact">
+  <div class="wrap">
+    <h2 data-t="footer.title">Давайте звільнимо ваш час для головного</h2>
+    <p class="sub" data-t="footer.sub">Буду радий обговорити, які завдання та процеси можу взяти на себе.</p>
+    <div class="contact-grid">
+      <div><div class="label">Telegram</div><a href="https://t.me/denys_solovei" target="_blank" rel="noopener">@denys_solovei</a></div>
+      <div><div class="label">LinkedIn</div><a href="https://linkedin.com/in/soloveidenys" target="_blank" rel="noopener">linkedin.com/in/soloveidenys</a></div>
+      <div><div class="label">Email</div><a href="mailto:denis.solovey@outlook.com">denis.solovey@outlook.com</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span data-t="footer.made">© 2026 Denys Solovei</span>
+      <span>denis-solovei.github.io</span>
+    </div>
+  </div>
 </footer>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close">&times;</button>
-  <button type="button" class="lightbox-nav lightbox-prev" data-lightbox-prev aria-label="Previous image">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5l-7 7 7 7"/></svg>
-  </button>
-  <div class="lightbox-stage"></div>
-  <button type="button" class="lightbox-nav lightbox-next" data-lightbox-next aria-label="Next image">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5l7 7-7 7"/></svg>
-  </button>
-</div>
+<script>
+const dict = {
+  uk: {
+    "nav.qualities":"Якості","nav.experience":"Досвід","nav.functions":"Функціонал","nav.interests":"Інтереси","nav.contact":"Контакти",
+    "hero.name":"Денис Соловей","hero.role":"Бізнес-асистент",
+    "hero.offer":"Забираю операційні задачі — повертаю вам фокус.","hero.cta":"Зв'язатися",
+    "qualities.kicker":"СУПЕРСИЛИ","qualities.title":"Системність без зайвої метушні",
+    "qualities.q1.t":"Системність","qualities.q1.d":"Структурую інформацію, завдання та процеси.",
+    "qualities.q2.t":"Самостійність","qualities.q2.d":"Рухаю завдання вперед без постійного контролю.",
+    "qualities.q3.t":"Допитливість","qualities.q3.d":"Занурююся в інформацію глибше, ніж вимагає запит.",
+    "qualities.joke":"<b>Ще одна з моїх навичок:</b> з часом починаю розуміти, чого хоче керівник, ще до того, як він сам про це подумав. Шкода, що в резюме не можна написати: «Телепатія — C1».",
+    "experience.kicker":"СИСТЕМНІСТЬ НА ПРАКТИЦІ","experience.title":"Досвід у цифрах",
+    "experience.n1.l":"людей у команді","experience.n1.d":"Координував роботу команди та кількох виробничих напрямів.",
+    "experience.n2.l":"B2B-компаній","experience.n2.d":"Зібрав і систематизував базу компаній у Google Sheets.",
+    "experience.n3.n":"SOP + чек-листи","experience.n3.l":"Стандартизація роботи","experience.n3.d":"Впроваджував SOP і чек-листи для впорядкування робочих процесів.",
+    "functions.kicker":"ЩО МОЖУ ВЗЯТИ НА СЕБЕ","functions.title":"Забираю операційні задачі — повертаю вам фокус",
+    "functions.f1.t":"Організація","functions.f1.d":"Календар · зустрічі · поїздки",
+    "functions.f2.t":"Контроль","functions.f2.d":"Завдання · дедлайни · підрядники",
+    "functions.f3.t":"Інформація","functions.f3.d":"Пошук · документи · таблиці",
+    "functions.f4.t":"Оптимізація","functions.f4.d":"Процеси · автоматизація · AI-інструменти",
+    "interests.kicker":"ДИВЛЮСЯ ШИРШЕ","interests.title":"Контекст і кругозір",
+    "interests.i1.t":"Історія + Географія","interests.i1.d":"Допомагають бачити контекст і причинно-наслідкові зв'язки.",
+    "interests.i2.t":"Мови + AI і технології","interests.i2.d":"Відкривають доступ до інформації, інших поглядів і нових інструментів.",
+    "footer.title":"Давайте звільнимо ваш час для головного","footer.sub":"Буду радий обговорити, які завдання та процеси можу взяти на себе.",
+    "footer.made":"© 2026 Денис Соловей"
+  },
+  en: {
+    "nav.qualities":"Strengths","nav.experience":"Experience","nav.functions":"What I do","nav.interests":"Interests","nav.contact":"Contact",
+    "hero.name":"Denys Solovei","hero.role":"Business Assistant",
+    "hero.offer":"I take operational tasks off your plate — and give your focus back.","hero.cta":"Get in touch",
+    "qualities.kicker":"SUPERPOWERS","qualities.title":"Structure, without the fuss",
+    "qualities.q1.t":"Structure","qualities.q1.d":"I organize information, tasks and processes.",
+    "qualities.q2.t":"Autonomy","qualities.q2.d":"I move tasks forward without needing constant check-ins.",
+    "qualities.q3.t":"Curiosity","qualities.q3.d":"I dig deeper into information than the request strictly asks for.",
+    "qualities.joke":"<b>One more skill:</b> over time I start understanding what my manager wants before they've even said it. Shame you can't put \"Telepathy — C1\" on a resume.",
+    "experience.kicker":"STRUCTURE IN PRACTICE","experience.title":"Experience, in numbers",
+    "experience.n1.l":"people on the team","experience.n1.d":"Coordinated a team and several production lines.",
+    "experience.n2.l":"B2B companies","experience.n2.d":"Built and maintained a company database in Google Sheets.",
+    "experience.n3.n":"SOPs + checklists","experience.n3.l":"Standardized workflows","experience.n3.d":"Rolled out SOPs and checklists to bring order to daily operations.",
+    "functions.kicker":"WHAT I CAN TAKE OFF YOUR PLATE","functions.title":"I take operational tasks off your plate — and give your focus back",
+    "functions.f1.t":"Organization","functions.f1.d":"Calendar · meetings · travel",
+    "functions.f2.t":"Follow-through","functions.f2.d":"Tasks · deadlines · vendors",
+    "functions.f3.t":"Information","functions.f3.d":"Research · documents · spreadsheets",
+    "functions.f4.t":"Optimization","functions.f4.d":"Processes · automation · AI tools",
+    "interests.kicker":"BROADER CONTEXT","interests.title":"Context and perspective",
+    "interests.i1.t":"History + Geography","interests.i1.d":"Help me see context and cause-and-effect.",
+    "interests.i2.t":"Languages + AI and tech","interests.i2.d":"Open up information, other perspectives and new tools.",
+    "footer.title":"Let's free up your time for what matters","footer.sub":"Happy to discuss which tasks and processes I can take on.",
+    "footer.made":"© 2026 Denys Solovei"
+  },
+  es: {
+    "nav.qualities":"Fortalezas","nav.experience":"Experiencia","nav.functions":"Qué hago","nav.interests":"Intereses","nav.contact":"Contacto",
+    "hero.name":"Denys Solovei","hero.role":"Asistente de negocios",
+    "hero.offer":"Me encargo de las tareas operativas — y te devuelvo el enfoque.","hero.cta":"Contactar",
+    "qualities.kicker":"SUPERPODERES","qualities.title":"Sistematización sin complicaciones",
+    "qualities.q1.t":"Sistematización","qualities.q1.d":"Organizo información, tareas y procesos.",
+    "qualities.q2.t":"Autonomía","qualities.q2.d":"Avanzo las tareas sin necesidad de supervisión constante.",
+    "qualities.q3.t":"Curiosidad","qualities.q3.d":"Profundizo en la información más de lo que pide la tarea.",
+    "qualities.joke":"<b>Otra de mis habilidades:</b> con el tiempo empiezo a entender lo que quiere el jefe antes de que lo diga. Lástima que en el currículum no se pueda poner: «Telepatía — C1».",
+    "experience.kicker":"SISTEMATIZACIÓN EN LA PRÁCTICA","experience.title":"Experiencia en cifras",
+    "experience.n1.l":"personas en el equipo","experience.n1.d":"Coordiné un equipo y varias líneas de producción.",
+    "experience.n2.l":"empresas B2B","experience.n2.d":"Armé y mantuve una base de empresas en Google Sheets.",
+    "experience.n3.n":"SOP + checklists","experience.n3.l":"Estandarización de procesos","experience.n3.d":"Implementé SOP y checklists para ordenar los procesos de trabajo.",
+    "functions.kicker":"QUÉ PUEDO ASUMIR","functions.title":"Me encargo de las tareas operativas — y te devuelvo el enfoque",
+    "functions.f1.t":"Organización","functions.f1.d":"Agenda · reuniones · viajes",
+    "functions.f2.t":"Seguimiento","functions.f2.d":"Tareas · plazos · proveedores",
+    "functions.f3.t":"Información","functions.f3.d":"Búsqueda · documentos · hojas de cálculo",
+    "functions.f4.t":"Optimización","functions.f4.d":"Procesos · automatización · herramientas de IA",
+    "interests.kicker":"MIRADA AMPLIA","interests.title":"Contexto y perspectiva",
+    "interests.i1.t":"Historia + Geografía","interests.i1.d":"Me ayudan a ver el contexto y las relaciones causa-efecto.",
+    "interests.i2.t":"Idiomas + IA y tecnología","interests.i2.d":"Abren el acceso a información, otras perspectivas y nuevas herramientas.",
+    "footer.title":"Liberemos tu tiempo para lo importante","footer.sub":"Encantado de conversar sobre qué tareas y procesos puedo asumir.",
+    "footer.made":"© 2026 Denys Solovei"
+  }
+};
 
-<script src="script.js"></script>
+function setLang(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const key = el.getAttribute('data-t');
+    const val = dict[lang][key];
+    if(val !== undefined) el.innerHTML = val;
+  });
+  document.querySelectorAll('#langSwitch button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  try{ localStorage.setItem('lang', lang); }catch(e){}
+}
+
+document.getElementById('langSwitch').addEventListener('click', e=>{
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  setLang(btn.dataset.lang);
+});
+
+let initial = 'uk';
+try{ initial = localStorage.getItem('lang') || 'uk'; }catch(e){}
+setLang(initial);
+</script>
+
 </body>
 </html>
